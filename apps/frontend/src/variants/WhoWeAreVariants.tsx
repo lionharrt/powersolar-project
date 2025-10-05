@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { PowerSolarSection } from '../components/PowerSolarSection';
+import { MEDIA_CONFIG } from '../config/media';
 
 interface WhoWeAreProps {
   onGetQuote: () => void;
@@ -22,16 +23,14 @@ export const WhoWeAreVariantA: React.FC<WhoWeAreProps> = ({ onGetQuote }) => {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        {/* Team Photo Placeholder on Left */}
+        {/* Team Photo on Left */}
         <div className="relative">
-          <div className="aspect-[4/3] rounded-2xl bg-gradient-to-br from-primary-400 via-primary-500 to-primary-600 flex items-center justify-center shadow-2xl overflow-hidden">
-            <div className="text-center p-8">
-              <svg className="w-20 h-20 mx-auto mb-4 text-white/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-              </svg>
-              <p className="text-white/80 font-semibold text-lg">Add Team Photo Here</p>
-              <p className="text-white/60 text-sm mt-2">Recommended: 800x600px</p>
-            </div>
+          <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
+            <img 
+              src={MEDIA_CONFIG.images.teamPhoto} 
+              alt="Power Solar Team"
+              className="w-full h-full object-cover"
+            />
           </div>
           
           {/* Founder Quote Card Overlay */}

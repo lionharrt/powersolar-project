@@ -17,6 +17,7 @@ export const MEDIA_CONFIG = {
   // Images (add as needed)
   images: {
     logo: 'https://storage.googleapis.com/powersolar-media/images/logo.png',
+    teamPhoto: 'https://storage.googleapis.com/powersolar-media/images/team-photo.jpg',
     // placeholder: 'https://storage.googleapis.com/powersolar-media/images/placeholder.jpg',
   },
   
