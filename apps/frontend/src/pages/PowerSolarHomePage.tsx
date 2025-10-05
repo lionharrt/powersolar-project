@@ -44,6 +44,11 @@ import {
   ServicesVariantB,
   ServicesVariantC,
 } from '../variants/ServicesVariants';
+import {
+  TestimonialsVariantA,
+  TestimonialsVariantB,
+  TestimonialsVariantC,
+} from '../variants/TestimonialsVariants';
 
 export const PowerSolarHomePage: React.FC = () => {
   const { t } = useTranslation(['home', 'services', 'common']);
@@ -98,6 +103,12 @@ export const PowerSolarHomePage: React.FC = () => {
     C: InvestVariantC,
   };
 
+  const testimonialsVariants = {
+    A: TestimonialsVariantA,
+    B: TestimonialsVariantB,
+    C: TestimonialsVariantC,
+  };
+
   // Get selected variants (with fallbacks for backwards compatibility)
   const WhoWeAreComponent = whoWeAreVariants[(state.sections.whoWeAre || 'A') as keyof typeof whoWeAreVariants];
   const BenefitsComponent = benefitsVariants[(state.sections.benefits || 'A') as keyof typeof benefitsVariants];
@@ -106,6 +117,7 @@ export const PowerSolarHomePage: React.FC = () => {
   const ProcessComponent = processVariants[(state.sections.process || 'A') as keyof typeof processVariants];
   const DidYouKnowComponent = didYouKnowVariants[(state.sections.didYouKnow || 'A') as keyof typeof didYouKnowVariants];
   const InvestComponent = investVariants[(state.sections.invest || 'A') as keyof typeof investVariants];
+  const TestimonialsComponent = testimonialsVariants[(state.sections.testimonials || 'A') as keyof typeof testimonialsVariants];
   const ContactComponent = contactVariants[(state.sections.contact || 'A') as keyof typeof contactVariants];
 
   // Section component map for dynamic ordering
@@ -117,6 +129,7 @@ export const PowerSolarHomePage: React.FC = () => {
     process: <ProcessComponent key="process" />,
     didYouKnow: <DidYouKnowComponent key="didYouKnow" />,
     invest: <InvestComponent key="invest" />,
+    testimonials: <TestimonialsComponent key="testimonials" />,
     contact: <ContactComponent key="contact" />,
   };
 

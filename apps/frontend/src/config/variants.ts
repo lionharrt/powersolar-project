@@ -527,6 +527,11 @@ export const SECTION_VARIANTS = {
     B: { id: 'B', name: 'Split', description: 'Info left, form right' },
     C: { id: 'C', name: 'Compact', description: 'Minimal fields, inline layout' },
   },
+  testimonials: {
+    A: { id: 'A', name: 'Grid Cards', description: 'Reviews in grid with Google badge' },
+    B: { id: 'B', name: 'Carousel', description: 'Full-width carousel slider' },
+    C: { id: 'C', name: 'Stats Focused', description: 'Big rating + featured reviews' },
+  },
 };
 
 // Helper to get theme main colors (for reference)
