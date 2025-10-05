@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { MEDIA_CONFIG } from '../config/media';
 
 interface NavigationProps {
   className?: string;
@@ -265,24 +266,13 @@ const Navigation: React.FC<NavigationProps> = ({ className = '' }) => {
           <div className="flex-shrink-0">
             <button
               onClick={handleLogoClick}
-              className="flex items-center space-x-3 group"
+              className="flex items-center hover:opacity-80 transition-opacity duration-300"
             >
-              <div className="flex flex-col">
-                <span
-                  className={`text-xl sm:text-2xl font-bold transition-colors duration-500 ease-out ${
-                    showBlur ? 'text-gray-900' : 'text-white'
-                  }`}
-                >
-                  {t('common:company.name')}
-                </span>
-                <span
-                  className={`text-xs transition-colors duration-500 ease-out ${
-                    showBlur ? 'text-gray-500' : 'text-white/70'
-                  }`}
-                >
-                  {t('common:company.tagline')}
-                </span>
-              </div>
+              <img 
+                src={MEDIA_CONFIG.images.logo} 
+                alt={t('common:company.name')}
+                className="h-12 sm:h-14 w-auto"
+              />
             </button>
           </div>
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+import { MEDIA_CONFIG } from '../config/media';
 
 interface FooterProps {
   className?: string;
@@ -28,7 +29,11 @@ const Footer: React.FC<FooterProps> = ({ className = '' }) => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Company Info */}
           <div>
-            <h3 className="text-2xl font-bold mb-4">{t('common:company.name')}</h3>
+            <img 
+              src={MEDIA_CONFIG.images.logo} 
+              alt={t('common:company.name')}
+              className="h-12 w-auto mb-4"
+            />
             <p className="text-gray-400 mb-4">{t('common:company.tagline')}</p>
             
             <div className="space-y-2 text-gray-400">
