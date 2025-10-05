@@ -5,7 +5,36 @@ import { THEME_VARIANTS, SECTION_VARIANTS } from '../config/variants';
 const DevToolbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(true);
   const [isMinimized, setIsMinimized] = useState(false);
-  const { state, setTheme, setSectionVariant, resetAll } = useVariants();
+  const [showReorderMode, setShowReorderMode] = useState(false);
+  const [tempOrder, setTempOrder] = useState<string[]>([]);
+  const { state, setTheme, setSectionVariant, setSectionOrder, resetAll } = useVariants();
+
+  // Initialize temp order when entering reorder mode
+  React.useEffect(() => {
+    if (showReorderMode) {
+      setTempOrder([...state.sectionOrder]);
+    }
+  }, [showReorderMode, state.sectionOrder]);
+
+  const moveSection = (fromIndex: number, direction: 'up' | 'down') => {
+    const newOrder = [...tempOrder];
+    const toIndex = direction === 'up' ? fromIndex - 1 : fromIndex + 1;
+    
+    if (toIndex < 0 || toIndex >= newOrder.length) return;
+    
+    [newOrder[fromIndex], newOrder[toIndex]] = [newOrder[toIndex], newOrder[fromIndex]];
+    setTempOrder(newOrder);
+  };
+
+  const applyReorder = () => {
+    setSectionOrder(tempOrder);
+    setShowReorderMode(false);
+  };
+
+  const cancelReorder = () => {
+    setTempOrder([...state.sectionOrder]);
+    setShowReorderMode(false);
+  };
 
   // Always show toolbar (temporary for client review)
   // To hide in production later, add: && import.meta.env.DEV
@@ -54,6 +83,75 @@ const DevToolbar: React.FC = () => {
 
       {/* Content */}
       <div className="overflow-y-auto flex-1 p-4 space-y-6">
+        {/* Reorder Mode Toggle */}
+        {!showReorderMode && (
+          <div className="border-b border-gray-200 pb-4">
+            <button
+              onClick={() => setShowReorderMode(true)}
+              className="w-full px-4 py-2 bg-blue-100 hover:bg-blue-200 text-blue-700 rounded text-sm font-medium transition-colors"
+            >
+              ↕️ Reorder Sections
+            </button>
+          </div>
+        )}
+
+        {/* Reorder Mode UI */}
+        {showReorderMode && (
+          <div className="border-b border-gray-200 pb-4 space-y-2">
+            <div className="text-sm font-semibold text-gray-700 mb-2">Reorder Sections</div>
+            <div className="space-y-1">
+              {tempOrder.map((sectionKey, index) => {
+                const sectionName = sectionKey
+                  .replace(/([A-Z])/g, ' $1')
+                  .replace(/^./, (str) => str.toUpperCase())
+                  .trim();
+
+                return (
+                  <div
+                    key={sectionKey}
+                    className="flex items-center gap-2 bg-gray-50 p-2 rounded border border-gray-200"
+                  >
+                    <div className="flex flex-col gap-1">
+                      <button
+                        onClick={() => moveSection(index, 'up')}
+                        disabled={index === 0}
+                        className="text-gray-600 hover:text-gray-900 disabled:opacity-30 disabled:cursor-not-allowed"
+                        title="Move up"
+                      >
+                        ▲
+                      </button>
+                      <button
+                        onClick={() => moveSection(index, 'down')}
+                        disabled={index === tempOrder.length - 1}
+                        className="text-gray-600 hover:text-gray-900 disabled:opacity-30 disabled:cursor-not-allowed"
+                        title="Move down"
+                      >
+                        ▼
+                      </button>
+                    </div>
+                    <div className="flex-1 text-sm font-medium text-gray-700">
+                      {index + 1}. {sectionName}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+            <div className="flex gap-2 mt-3">
+              <button
+                onClick={applyReorder}
+                className="flex-1 px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded text-sm font-medium transition-colors"
+              >
+                ✓ Apply Order
+              </button>
+              <button
+                onClick={cancelReorder}
+                className="flex-1 px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded text-sm font-medium transition-colors"
+              >
+                ✕ Cancel
+              </button>
+            </div>
+          </div>
+        )}
         {/* Theme Selector */}
         <div>
           <label className="block text-sm font-semibold text-gray-700 mb-2">

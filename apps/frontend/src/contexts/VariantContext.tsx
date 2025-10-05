@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 
 interface VariantState {
-  theme: number; // 1-10
+  theme: number; // 1-11
   sections: {
     whoWeAre: string;
     benefits: string;
@@ -11,12 +11,14 @@ interface VariantState {
     didYouKnow: string;
     contact: string;
   };
+  sectionOrder: string[]; // Order of sections on the page
 }
 
 interface VariantContextType {
   state: VariantState;
   setTheme: (theme: number) => void;
   setSectionVariant: (section: keyof VariantState['sections'], variant: string) => void;
+  setSectionOrder: (order: string[]) => void;
   resetAll: () => void;
 }
 
@@ -31,6 +33,7 @@ const defaultState: VariantState = {
     didYouKnow: 'A',
     contact: 'A',
   },
+  sectionOrder: ['whoWeAre', 'benefits', 'services', 'showcase', 'process', 'didYouKnow', 'contact'],
 };
 
 const VariantContext = createContext<VariantContextType | undefined>(undefined);
@@ -77,13 +80,20 @@ export const VariantProvider: React.FC<{ children: ReactNode }> = ({ children })
     }));
   };
 
+  const setSectionOrder = (order: string[]) => {
+    setState((prev) => ({
+      ...prev,
+      sectionOrder: order,
+    }));
+  };
+
   const resetAll = () => {
     setState(defaultState);
     localStorage.removeItem('powersolar-variants');
   };
 
   return (
-    <VariantContext.Provider value={{ state, setTheme, setSectionVariant, resetAll }}>
+    <VariantContext.Provider value={{ state, setTheme, setSectionVariant, setSectionOrder, resetAll }}>
       {children}
     </VariantContext.Provider>
   );

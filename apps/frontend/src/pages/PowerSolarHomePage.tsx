@@ -97,6 +97,22 @@ export const PowerSolarHomePage: React.FC = () => {
   const DidYouKnowComponent = didYouKnowVariants[(state.sections.didYouKnow || 'A') as keyof typeof didYouKnowVariants];
   const ContactComponent = contactVariants[(state.sections.contact || 'A') as keyof typeof contactVariants];
 
+  // Section component map for dynamic ordering
+  const sectionMap: Record<string, React.ReactNode> = {
+    whoWeAre: <WhoWeAreComponent key="whoWeAre" onGetQuote={() => {/* TODO: Open quote modal */}} />,
+    benefits: <BenefitsComponent key="benefits" />,
+    services: <ServicesComponent key="services" />,
+    showcase: <ShowcaseComponent key="showcase" />,
+    process: <ProcessComponent key="process" />,
+    didYouKnow: <DidYouKnowComponent key="didYouKnow" />,
+    contact: <ContactComponent key="contact" />,
+  };
+
+  // Render sections in the order specified by state.sectionOrder
+  const orderedSections = (state.sectionOrder || Object.keys(sectionMap)).map(
+    (sectionKey) => sectionMap[sectionKey]
+  );
+
   return (
     <>
       <Helmet>
@@ -107,7 +123,7 @@ export const PowerSolarHomePage: React.FC = () => {
         />
       </Helmet>
 
-      {/* Hero Section - No variants */}
+      {/* Hero Section - Always First */}
       <section id="home" className="scroll-snap-section">
         <PowerSolarVideoHero
           videoUrl={MEDIA_CONFIG.videos.hero}
@@ -115,23 +131,8 @@ export const PowerSolarHomePage: React.FC = () => {
         />
       </section>
 
-      {/* Who We Are Section - WITH VARIANTS */}
-      <WhoWeAreComponent onGetQuote={() => {/* TODO: Open quote modal */}} />
-
-      {/* Benefits Section - WITH VARIANTS */}
-      <BenefitsComponent />
-
-      {/* Services Section - WITH VARIANTS */}
-      <ServicesComponent />
-
-      {/* Project Showcase Section - WITH VARIANTS */}
-      <ShowcaseComponent />
-
-      {/* Process Section - WITH VARIANTS */}
-      <ProcessComponent />
-
-      {/* Did You Know Section - WITH VARIANTS */}
-      <DidYouKnowComponent />
+      {/* Dynamically Ordered Sections */}
+      {orderedSections}
 
       {/* Invest Section - No variants (keep as is) */}
       <PowerSolarSection
