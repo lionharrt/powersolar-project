@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "powersolar-ie",
     "public": "apps/frontend/dist",
     "ignore": [
       "firebase.json",
