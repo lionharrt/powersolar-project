@@ -89,7 +89,7 @@ export const TestimonialsVariantA: React.FC = () => {
   useTranslation(['home']);
 
   return (
-    <PowerSolarSection id="testimonials" background="white" height="auto">
+    <PowerSolarSection id="testimonials" background="light" height="auto">
       <div className="text-center mb-12">
         <h2 className="text-4xl font-bold text-gray-900 mb-4 font-display">
           What Our Customers Say
@@ -286,7 +286,7 @@ export const TestimonialsVariantC: React.FC = () => {
   useTranslation(['home']);
 
   return (
-    <PowerSolarSection id="testimonials" background="white" height="auto">
+    <PowerSolarSection id="testimonials" background="light" height="auto">
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
         {/* Left: Stats */}
         <div className="lg:col-span-1">
