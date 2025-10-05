@@ -178,43 +178,46 @@ const DevToolbar: React.FC = () => {
           </p>
         </div>
 
-        {/* Section Variants - Dynamically generated */}
-        <div className="space-y-4">
-          <div className="text-sm font-semibold text-gray-700">Section Variants</div>
+               {/* Section Variants - Dynamically generated in sectionOrder */}
+               <div className="space-y-4">
+                 <div className="text-sm font-semibold text-gray-700">Section Variants</div>
 
-          {Object.entries(SECTION_VARIANTS).map(([sectionKey, variants]) => {
-            const currentVariant = state.sections[sectionKey as keyof typeof state.sections];
-            
-            // Format section name (camelCase to Title Case)
-            const sectionName = sectionKey
-              .replace(/([A-Z])/g, ' $1')
-              .replace(/^./, (str) => str.toUpperCase())
-              .trim();
+                 {state.sectionOrder.map((sectionKey) => {
+                   const variants = SECTION_VARIANTS[sectionKey as keyof typeof SECTION_VARIANTS];
+                   if (!variants) return null;
+                   
+                   const currentVariant = state.sections[sectionKey as keyof typeof state.sections];
+                   
+                   // Format section name (camelCase to Title Case)
+                   const sectionName = sectionKey
+                     .replace(/([A-Z])/g, ' $1')
+                     .replace(/^./, (str) => str.toUpperCase())
+                     .trim();
 
-            return (
-              <div key={sectionKey}>
-                <label className="block text-xs font-medium text-gray-600 mb-1">
-                  {sectionName}
-                </label>
-                <div className="flex gap-2">
-                  {Object.keys(variants).map((variantKey) => (
-                    <button
-                      key={variantKey}
-                      onClick={() => setSectionVariant(sectionKey as keyof typeof state.sections, variantKey)}
-                      className={`flex-1 px-3 py-2 rounded border-2 text-sm transition-all ${
-                        currentVariant === variantKey
-                          ? 'border-primary-500 bg-primary-50 text-primary-700 font-semibold'
-                          : 'border-gray-200 hover:border-gray-300 text-gray-600'
-                      }`}
-                      title={variants[variantKey as keyof typeof variants].description}
-                    >
-                      {variantKey}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            );
-          })}
+                   return (
+                     <div key={sectionKey}>
+                       <label className="block text-xs font-medium text-gray-600 mb-1">
+                         {sectionName}
+                       </label>
+                       <div className="flex gap-2">
+                         {Object.keys(variants).map((variantKey) => (
+                           <button
+                             key={variantKey}
+                             onClick={() => setSectionVariant(sectionKey as keyof typeof state.sections, variantKey)}
+                             className={`flex-1 px-3 py-2 rounded border-2 text-sm transition-all ${
+                               currentVariant === variantKey
+                                 ? 'border-primary-500 bg-primary-50 text-primary-700 font-semibold'
+                                 : 'border-gray-200 hover:border-gray-300 text-gray-600'
+                             }`}
+                             title={variants[variantKey as keyof typeof variants].description}
+                           >
+                             {variantKey}
+                           </button>
+                         ))}
+                       </div>
+                     </div>
+                   );
+                 })}
         </div>
       </div>
 

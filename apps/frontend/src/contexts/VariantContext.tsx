@@ -47,14 +47,28 @@ export const VariantProvider: React.FC<{ children: ReactNode }> = ({ children })
     if (saved) {
       try {
         const parsedState = JSON.parse(saved);
-        // Merge with defaultState to ensure any new sections get added
+        
+        // Merge sections: start with default, then apply saved values
+        const mergedSections = { ...defaultState.sections };
+        Object.keys(parsedState.sections || {}).forEach(key => {
+          if (key in mergedSections) {
+            mergedSections[key as keyof typeof mergedSections] = parsedState.sections[key];
+          }
+        });
+        
+        // Merge sectionOrder: add any new sections from default that aren't in saved order
+        const savedOrder = parsedState.sectionOrder || [];
+        const mergedOrder = [...savedOrder];
+        defaultState.sectionOrder.forEach(section => {
+          if (!mergedOrder.includes(section)) {
+            mergedOrder.push(section);
+          }
+        });
+        
         return {
-          ...defaultState,
-          ...parsedState,
-          sections: {
-            ...defaultState.sections,
-            ...parsedState.sections,
-          },
+          theme: parsedState.theme || defaultState.theme,
+          sections: mergedSections,
+          sectionOrder: mergedOrder,
         };
       } catch {
         return defaultState;
