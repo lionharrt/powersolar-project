@@ -1,0 +1,41 @@
+{
+  "name": "powersolar-project",
+  "version": "1.0.0",
+  "description": "Power Solar - Family-owned Solar PV Installation Company Website",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "concurrently \"pnpm dev:backend\" \"pnpm dev:frontend\"",
+    "dev:backend": "pnpm --filter backend dev",
+    "dev:frontend": "pnpm --filter frontend dev",
+    "build": "pnpm build:backend && pnpm build:frontend",
+    "build:backend": "pnpm --filter backend build",
+    "build:frontend": "pnpm --filter frontend build",
+    "test": "pnpm test:backend && pnpm test:frontend",
+    "test:backend": "pnpm --filter backend test",
+    "test:frontend": "pnpm --filter frontend test",
+    "lint": "pnpm lint:backend && pnpm lint:frontend",
+    "lint:backend": "pnpm --filter backend lint",
+    "lint:frontend": "pnpm --filter frontend lint",
+    "type-check": "pnpm type-check:backend && pnpm type-check:frontend",
+    "type-check:backend": "pnpm --filter backend type-check",
+    "type-check:frontend": "pnpm --filter frontend type-check",
+    "db:start": "docker-compose up -d",
+    "db:stop": "docker-compose stop",
+    "db:restart": "docker-compose restart",
+    "db:logs": "docker-compose logs -f postgres",
+    "db:reset": "docker-compose down -v && docker-compose up -d"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=8.0.0"
+  }
+}
+

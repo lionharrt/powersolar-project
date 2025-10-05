@@ -1,0 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --nav-height: 5rem; /* 80px */
+  --nav-height-mobile: 4rem; /* 64px */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: hidden; /* Prevent double scrollbars */
+}
+
+.App {
+  min-height: 100vh;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+/* Scroll Container */
+.scroll-snap-container {
+  scroll-behavior: smooth;
+  position: relative;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Section spacing to account for fixed nav */
+.scroll-snap-section {
+  scroll-margin-top: var(--nav-height);
+  min-height: 100vh;
+}
+
+@media (max-width: 768px) {
+  .scroll-snap-section {
+    scroll-margin-top: var(--nav-height-mobile);
+    min-height: calc(100vh - var(--nav-height-mobile));
+  }
+}
+
+/* Custom scrollbar */
+.scroll-snap-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scroll-snap-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.scroll-snap-container::-webkit-scrollbar-thumb {
+  background: #10B981;
+  border-radius: 4px;
+}
+
+.scroll-snap-container::-webkit-scrollbar-thumb:hover {
+  background: #059669;
+}
+
+/* Hide scrollbar for Firefox */
+.scroll-snap-container {
+  scrollbar-width: thin;
+  scrollbar-color: #10B981 #f1f1f1;
+}
+
+/* Typography */
+.font-display {
+  font-family: 'Poppins', system-ui, sans-serif;
+}
+
