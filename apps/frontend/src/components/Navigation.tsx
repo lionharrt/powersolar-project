@@ -316,10 +316,10 @@ const Navigation: React.FC<NavigationProps> = ({ className = '' }) => {
             {/* Desktop CTA Button */}
             <button
               onClick={() => handleNavClick('contact')}
-              className={`hidden md:block px-6 py-2 text-sm font-medium rounded-lg transition-all duration-500 ease-out ${
+              className={`hidden md:block px-6 py-2 text-sm font-medium rounded-lg transition-all duration-500 ease-out shadow-md hover:shadow-lg ${
                 showBlur
-                  ? 'bg-primary-600 hover:bg-primary-700 text-white'
-                  : 'bg-white text-gray-900 hover:bg-gray-100'
+                  ? 'bg-secondary-500 hover:bg-secondary-600 text-white'
+                  : 'bg-secondary-500 hover:bg-secondary-600 text-white'
               }`}
             >
               {t('navigation:getQuote')}
@@ -392,7 +392,7 @@ const Navigation: React.FC<NavigationProps> = ({ className = '' }) => {
                     handleNavClick('contact');
                     setIsMenuOpen(false);
                   }}
-                  className="w-full bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 text-white py-4 px-6 rounded-lg font-semibold text-center transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                  className="w-full bg-secondary-500 hover:bg-secondary-600 text-white py-4 px-6 rounded-lg font-semibold text-center transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
                 >
                   {t('navigation:getQuote')}
                 </button>

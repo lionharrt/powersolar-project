@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 import { PowerSolarVideoHero } from '../components/PowerSolarVideoHero';
 import { PowerSolarSection } from '../components/PowerSolarSection';
+import { MEDIA_CONFIG } from '../config/media';
 
 export const PowerSolarHomePage: React.FC = () => {
   const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
@@ -21,6 +22,7 @@ export const PowerSolarHomePage: React.FC = () => {
       {/* Hero Section */}
       <section id="home" className="scroll-snap-section">
         <PowerSolarVideoHero
+          videoUrl={MEDIA_CONFIG.videos.hero}
           onGetQuote={() => setIsQuoteModalOpen(true)}
         />
       </section>

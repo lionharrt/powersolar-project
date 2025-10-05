@@ -1,16 +1,19 @@
 {
   "hero": {
-    "title1": "Save Up to 90% on Electricity Bills",
-    "subtitle1": "Premium Solar Panels with 30-Year Warranty",
-    "title2": "SEAI Grants Up to €2,100",
-    "subtitle2": "For Homes Built Before 2021",
-    "title3": "500+ Installations Across Leinster",
-    "subtitle3": "Family-Owned & Trusted Since 2012",
-    "disclaimer": "*Subject to site survey and system installed.",
+    "title": "Save Up to 90% on Your Electricity Bills Forever",
+    "subtitle": "SEAI Grants Up to €2,100 Available",
+    "disclaimer": "*Subject to site survey and system installed",
+    "cta": {
+      "quote": "Get A Quote",
+      "call": "Call 087-0644982"
+    },
     "stats": {
-      "installations": "Installations",
-      "experience": "Years Experience",
-      "warranty": "Year Warranty"
+      "installations": "500+",
+      "installationsLabel": "Installations",
+      "experience": "12+",
+      "experienceLabel": "Years Experience",
+      "warranty": "30",
+      "warrantyLabel": "Year Warranty"
     }
   },
   "whoWeAre": {
