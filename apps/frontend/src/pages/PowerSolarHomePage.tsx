@@ -181,9 +181,6 @@ export const PowerSolarHomePage: React.FC = () => {
           </div>
         </div>
       </PowerSolarSection>
-
-      {/* Contact Section - WITH VARIANTS */}
-      <ContactComponent />
     </>
   );
 };
