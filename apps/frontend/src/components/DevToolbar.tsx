@@ -7,9 +7,9 @@ const DevToolbar: React.FC = () => {
   const [isMinimized, setIsMinimized] = useState(false);
   const { state, setTheme, setSectionVariant, resetAll } = useVariants();
 
-  // Only show in dev mode or with query param
-  const shouldShow =
-    import.meta.env.DEV || window.location.search.includes('devmode=true');
+  // Always show toolbar (temporary for client review)
+  // To hide in production later, add: && import.meta.env.DEV
+  const shouldShow = true;
 
   if (!shouldShow) return null;
 
@@ -60,7 +60,7 @@ const DevToolbar: React.FC = () => {
             Theme
           </label>
           <div className="grid grid-cols-5 gap-2">
-            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((themeId) => (
+            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map((themeId) => (
               <button
                 key={themeId}
                 onClick={() => setTheme(themeId)}

@@ -436,6 +436,48 @@ export const THEME_VARIANTS: Record<number, ThemeVariant> = {
       },
     },
   },
+  11: {
+    id: 11,
+    name: 'Professional Eco (Designer Pick)',
+    colors: {
+      primary: {
+        50: '#E8EDF2',
+        100: '#D1DBE5',
+        200: '#A3B7CB',
+        300: '#7593B1',
+        400: '#476F97',
+        500: '#0B2644', // Deep Blue - Main brand color
+        600: '#091E36',
+        700: '#071729',
+        800: '#050F1B',
+        900: '#02080E',
+      },
+      secondary: {
+        50: '#E6F7F3',
+        100: '#CCEFE7',
+        200: '#99DFCF',
+        300: '#66CFB7',
+        400: '#33BF9F',
+        500: '#009E7F', // Teal - Eco-friendly
+        600: '#007E65',
+        700: '#005F4C',
+        800: '#003F32',
+        900: '#002019',
+      },
+      accent: {
+        50: '#FEF3E6',
+        100: '#FDE7CC',
+        200: '#FBCF99',
+        300: '#F9B766',
+        400: '#F79F33',
+        500: '#F28C00', // Orange - Solar warmth & CTAs
+        600: '#C27000',
+        700: '#915400',
+        800: '#613800',
+        900: '#301C00',
+      },
+    },
+  },
 };
 
 export interface SectionVariantConfig {
