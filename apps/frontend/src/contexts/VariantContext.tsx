@@ -9,6 +9,7 @@ interface VariantState {
     showcase: string;
     process: string;
     didYouKnow: string;
+    invest: string;
     contact: string;
   };
   sectionOrder: string[]; // Order of sections on the page
@@ -31,9 +32,10 @@ const defaultState: VariantState = {
     showcase: 'A',
     process: 'A',
     didYouKnow: 'A',
+    invest: 'A',
     contact: 'A',
   },
-  sectionOrder: ['whoWeAre', 'benefits', 'services', 'showcase', 'process', 'didYouKnow', 'contact'],
+  sectionOrder: ['whoWeAre', 'benefits', 'services', 'showcase', 'process', 'didYouKnow', 'invest', 'contact'],
 };
 
 const VariantContext = createContext<VariantContextType | undefined>(undefined);

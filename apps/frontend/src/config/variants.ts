@@ -517,6 +517,11 @@ export const SECTION_VARIANTS = {
     B: { id: 'B', name: 'Cards', description: 'Individual fact cards' },
     C: { id: 'C', name: 'Two Column', description: 'Facts in two columns' },
   },
+  invest: {
+    A: { id: 'A', name: 'Benefits List', description: 'Numbered list with CTA' },
+    B: { id: 'B', name: 'Two Column', description: 'Benefits left, info right' },
+    C: { id: 'C', name: 'Cards', description: 'Individual benefit cards' },
+  },
   contact: {
     A: { id: 'A', name: 'Centered', description: 'Form centered, full width' },
     B: { id: 'B', name: 'Split', description: 'Info left, form right' },

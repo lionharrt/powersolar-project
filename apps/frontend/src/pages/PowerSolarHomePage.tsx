@@ -3,7 +3,6 @@ import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 import { useVariants } from '../contexts/VariantContext';
 import { PowerSolarVideoHero } from '../components/PowerSolarVideoHero';
-import { PowerSolarSection } from '../components/PowerSolarSection';
 import { MEDIA_CONFIG } from '../config/media';
 import {
   WhoWeAreVariantA,
@@ -30,6 +29,11 @@ import {
   ContactVariantB,
   ContactVariantC,
 } from '../variants/ContactVariants';
+import {
+  InvestVariantA,
+  InvestVariantB,
+  InvestVariantC,
+} from '../variants/InvestVariants';
 import {
   ShowcaseVariantA,
   ShowcaseVariantB,
@@ -88,6 +92,12 @@ export const PowerSolarHomePage: React.FC = () => {
     C: ContactVariantC,
   };
 
+  const investVariants = {
+    A: InvestVariantA,
+    B: InvestVariantB,
+    C: InvestVariantC,
+  };
+
   // Get selected variants (with fallbacks for backwards compatibility)
   const WhoWeAreComponent = whoWeAreVariants[(state.sections.whoWeAre || 'A') as keyof typeof whoWeAreVariants];
   const BenefitsComponent = benefitsVariants[(state.sections.benefits || 'A') as keyof typeof benefitsVariants];
@@ -95,6 +105,7 @@ export const PowerSolarHomePage: React.FC = () => {
   const ShowcaseComponent = showcaseVariants[(state.sections.showcase || 'A') as keyof typeof showcaseVariants];
   const ProcessComponent = processVariants[(state.sections.process || 'A') as keyof typeof processVariants];
   const DidYouKnowComponent = didYouKnowVariants[(state.sections.didYouKnow || 'A') as keyof typeof didYouKnowVariants];
+  const InvestComponent = investVariants[(state.sections.invest || 'A') as keyof typeof investVariants];
   const ContactComponent = contactVariants[(state.sections.contact || 'A') as keyof typeof contactVariants];
 
   // Section component map for dynamic ordering
@@ -105,6 +116,7 @@ export const PowerSolarHomePage: React.FC = () => {
     showcase: <ShowcaseComponent key="showcase" />,
     process: <ProcessComponent key="process" />,
     didYouKnow: <DidYouKnowComponent key="didYouKnow" />,
+    invest: <InvestComponent key="invest" />,
     contact: <ContactComponent key="contact" />,
   };
 
@@ -125,7 +137,7 @@ export const PowerSolarHomePage: React.FC = () => {
 
       {/* Hero Section - Always First */}
       <section id="home" className="scroll-snap-section">
-        <PowerSolarVideoHero
+      <PowerSolarVideoHero
           videoUrl={MEDIA_CONFIG.videos.hero}
           onGetQuote={() => {/* TODO: Open quote modal */}}
         />
@@ -133,54 +145,6 @@ export const PowerSolarHomePage: React.FC = () => {
 
       {/* Dynamically Ordered Sections */}
       {orderedSections}
-
-      {/* Invest Section - No variants (keep as is) */}
-      <PowerSolarSection
-        id="invest"
-        background="light"
-        height="auto"
-      >
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-4xl font-bold text-gray-900 mb-8 text-center font-display">
-            {t('home:invest.title')}
-          </h2>
-
-          <div className="bg-gradient-to-br from-primary-50 to-accent-50 rounded-2xl p-8 lg:p-12 mb-8">
-            <p className="text-gray-700 leading-relaxed mb-6">
-              Not only is installing solar panels beneficial for the environment, providing a sustainable,
-              renewable and clean source of free electricity for your home or business, but it also offers
-              significant financial advantages.
-            </p>
-
-            <ul className="space-y-4 mb-6">
-              {(t('home:invest.benefits', { returnObjects: true }) as string[]).map((benefit: string, index: number) => (
-                <li key={index} className="flex items-start gap-3">
-                  <span className="text-primary-600 text-xl flex-shrink-0 font-bold">{index + 1}.</span>
-                  <span className="text-gray-700 leading-relaxed">{benefit}</span>
-                </li>
-              ))}
-            </ul>
-
-            <p className="text-gray-700 leading-relaxed font-semibold">
-              {t('home:invest.payback')}
-            </p>
-          </div>
-
-          <div className="space-y-6 text-gray-700 leading-relaxed">
-            <p>{t('home:invest.familyBusiness')}</p>
-            <p>{t('home:invest.closing')}</p>
-          </div>
-
-          <div className="text-center mt-8">
-            <button
-              onClick={() => {/* TODO: Open quote modal */}}
-              className="px-8 py-4 bg-secondary-500 hover:bg-secondary-600 text-white font-bold text-lg rounded-lg transition-colors shadow-lg"
-            >
-              {t('common:cta.getQuote')}
-            </button>
-          </div>
-        </div>
-      </PowerSolarSection>
     </>
   );
 };
